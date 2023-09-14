@@ -2,93 +2,36 @@ import NoteContext from "./noteContext";
 import { useState } from 'react';
 
 const NoteState = (props) => {
-    const notesInitial = [
-        {
-            "_id": "6502905c1dba89ab1a78f805",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Language",
-            "description": "Hindi, Gujarati, English, Marathi, Tamil",
-            "tag": "Indian Languages",
-            "date": "2023-09-14T04:47:24.776Z",
-            "__v": 0
-        },
-        {
-            "_id": "6502909f1dba89ab1a78f808",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "State",
-            "description": "Gujarat, Rajasthan, Uttar Pradesh, Punjab, Tamil Nadu",
-            "tag": "Indian State",
-            "date": "2023-09-14T04:48:31.807Z",
-            "__v": 0
-        },
-        {
-            "_id": "650291441dba89ab1a78f80f",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Country",
-            "description": "India, Pakistan, Nepal, Shri Lanka, China",
-            "tag": "Asian Country",
-            "date": "2023-09-14T04:51:16.173Z",
-            "__v": 0
-        },
-        {
-            "_id": "6502905c1dba89ab1a78f801",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Language",
-            "description": "Hindi, Gujarati, English, Marathi, Tamil",
-            "tag": "Indian Languages",
-            "date": "2023-09-14T04:47:24.776Z",
-            "__v": 0
-        },
-        {
-            "_id": "6502909f1dba89ab1a78f802",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "State",
-            "description": "Gujarat, Rajasthan, Uttar Pradesh, Punjab, Tamil Nadu",
-            "tag": "Indian State",
-            "date": "2023-09-14T04:48:31.807Z",
-            "__v": 0
-        },
-        {
-            "_id": "650291441dba89ab1a78f803",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Country",
-            "description": "India, Pakistan, Nepal, Shri Lanka, China",
-            "tag": "Asian Country",
-            "date": "2023-09-14T04:51:16.173Z",
-            "__v": 0
-        },
-        {
-            "_id": "6502905c1dba89ab1a78f804",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Language",
-            "description": "Hindi, Gujarati, English, Marathi, Tamil",
-            "tag": "Indian Languages",
-            "date": "2023-09-14T04:47:24.776Z",
-            "__v": 0
-        },
-        {
-            "_id": "6502909f1dba89ab1a78f80g",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "State",
-            "description": "Gujarat, Rajasthan, Uttar Pradesh, Punjab, Tamil Nadu",
-            "tag": "Indian State",
-            "date": "2023-09-14T04:48:31.807Z",
-            "__v": 0
-        },
-        {
-            "_id": "650291441dba89ab1a78f80u",
-            "user": "65028f7c1dba89ab1a78f7f5",
-            "title": "Country",
-            "description": "India, Pakistan, Nepal, Shri Lanka, China",
-            "tag": "Asian Country",
-            "date": "2023-09-14T04:51:16.173Z",
-            "__v": 0
-        }
-    ]
+    const host = "http://localhost:5000"
+    const notesInitial = []
     const [notes, setNotes] = useState(notesInitial)
 
+    //Get all Note
+    const getNotes = async () => {
+        //API Call
+        const response = await fetch(`${host}/api/notes/fetchallnotes`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMjhmN2MxZGJhODlhYjFhNzhmN2Y1In0sImlhdCI6MTY5NDY4NzYyM30.N2wf0d9HxHHsSkekY78zZib0pPP6sZmQ4VJJCfjCR-U'
+            }
+        }); 
+        const json = await response.json()
+        setNotes(json)
+    }
+
     //Add a Note
-    const addNote = (title, description, tag) => {
+    const addNote = async (title, description, tag) => {
+        //API Call
+        const response = await fetch(`${host}/api/notes/addnote`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMjhmN2MxZGJhODlhYjFhNzhmN2Y1In0sImlhdCI6MTY5NDY4NzYyM30.N2wf0d9HxHHsSkekY78zZib0pPP6sZmQ4VJJCfjCR-U'
+            },
+            body: JSON.stringify(title, description, tag)
+        }); 
+        //Logic
         const note = {
             "_id": "650291441dba89ab1a78f80u",
             "user": "65028f7c1dba89ab1a78f7f54",
@@ -103,18 +46,38 @@ const NoteState = (props) => {
 
     //Delete a Note
     const deleteNote = (id) => {
+        //API Call
+        //Logic
         console.log("Deleteing the note with id " + id)
-        const newNotes = notes.filter((note) => {return note._id!==id});
+        const newNotes = notes.filter((note) => { return note._id !== id });
         setNotes(newNotes);
     }
 
     //Edit a Note
-    const editNote = (id, title, description, tag) => {
-        
+    const editNote = async (id, title, description, tag) => {
+        //API Call
+        const response = await fetch(`${host}/api/notes/updatenote/${id}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'auth-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUwMjhmN2MxZGJhODlhYjFhNzhmN2Y1In0sImlhdCI6MTY5NDY4NzYyM30.N2wf0d9HxHHsSkekY78zZib0pPP6sZmQ4VJJCfjCR-U'
+            },
+            body: JSON.stringify(title, description, tag)
+        });
+        const json = response.json();
+        //Logic
+        for (let index = 0; index < notes.length; index++) {
+            const element = notes[index];
+            if (element._id === id) {
+                element.title = title;
+                element.description = description;
+                element.tag = tag;
+            }
+        }
     }
 
     return (
-        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote }}>
+        <NoteContext.Provider value={{ notes, addNote, deleteNote, editNote, getNotes }}>
             {props.children}
         </NoteContext.Provider>
     )
