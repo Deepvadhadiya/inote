@@ -31,7 +31,7 @@ const NoteState = (props) => {
           "__v": 0
         },
         {
-            "_id": "6502905c1dba89ab1a78f805",
+            "_id": "6502905c1dba89ab1a78f801",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "Language",
             "description": "Hindi, Gujarati, English, Marathi, Tamil",
@@ -40,7 +40,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "6502909f1dba89ab1a78f808",
+            "_id": "6502909f1dba89ab1a78f802",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "State",
             "description": "Gujarat, Rajasthan, Uttar Pradesh, Punjab, Tamil Nadu",
@@ -49,7 +49,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "650291441dba89ab1a78f80f",
+            "_id": "650291441dba89ab1a78f803",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "Country",
             "description": "India, Pakistan, Nepal, Shri Lanka, China",
@@ -58,7 +58,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "6502905c1dba89ab1a78f805",
+            "_id": "6502905c1dba89ab1a78f804",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "Language",
             "description": "Hindi, Gujarati, English, Marathi, Tamil",
@@ -67,7 +67,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "6502909f1dba89ab1a78f808",
+            "_id": "6502909f1dba89ab1a78f80g",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "State",
             "description": "Gujarat, Rajasthan, Uttar Pradesh, Punjab, Tamil Nadu",
@@ -76,7 +76,7 @@ const NoteState = (props) => {
             "__v": 0
           },
           {
-            "_id": "650291441dba89ab1a78f80f",
+            "_id": "650291441dba89ab1a78f80u",
             "user": "65028f7c1dba89ab1a78f7f5",
             "title": "Country",
             "description": "India, Pakistan, Nepal, Shri Lanka, China",
