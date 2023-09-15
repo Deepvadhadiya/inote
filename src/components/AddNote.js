@@ -7,11 +7,12 @@ const AddNote = () => {
 
     const { addNote } = context;
 
-    const [note, setNote] = useState({title: "", description: "", tag: "Default"});
+    const [note, setNote] = useState({title: "", description: "", tag: ""});
 
     const handleClick = (e) => {
         e.preventDefault();
         addNote(note.title, note.description, note.tag);
+        setNote({title: "", description: "", tag: ""});
     }
 
     const onChange = (e) => {
@@ -24,17 +25,17 @@ const AddNote = () => {
             <form className="my-2">
                 <div className="form-group">
                     <label htmlFor="title">Enter Title</label>
-                    <input type="text" className="form-control" name="title" id="title" aria-describedby="emailHelp"onChange={onChange}/>
+                    <input type="text" className="form-control" value={note.title} name="title" id="title" aria-describedby="emailHelp" onChange={onChange} minLength={5} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="description">Enter Description</label>
-                    <input type="text" className="form-control" name="description" id="description" onChange={onChange}/>
+                    <input type="text" className="form-control" value={note.description} name="description" id="description" onChange={onChange} minLength={5} required/>
                 </div>
                 <div className="form-group">
                     <label htmlFor="tag">Enter Tag</label>
-                    <input type="text" className="form-control" name="tag" id="tag" onChange={onChange}/>
+                    <input type="text" className="form-control" value={note.tag} name="tag" id="tag" onChange={onChange} minLength={5} required/>
                 </div>
-                <button type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
+                <button disabled={note.title.length<5 || note.description.length<5} type="submit" className="btn btn-primary" onClick={handleClick}>Add Note</button>
             </form>
         </div>
     )
