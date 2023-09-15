@@ -3,17 +3,22 @@ import React, { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import Noteitem from './Noteitem';
 import AddNote from './AddNote';
+import { useHistory } from 'react-router-dom'
 
 const Notes = (props) => {
 
     const context = useContext(noteContext);
-
+    let history = useHistory();
     const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
 
     const { notes, getNotes, editNote } = context
 
     useEffect(() => {
-        getNotes();
+        if (localStorage.getItem('token')) {
+            getNotes();
+        } else {
+            history.push("/login")
+        }
     })
 
     const updateNote = (currentNote) => {
@@ -36,7 +41,7 @@ const Notes = (props) => {
 
     return (
         <div className="container my-3">
-            <AddNote showAlert={props.showAlert}/>
+            <AddNote showAlert={props.showAlert} />
             <button type="button" className="btn btn-primary d-none" data-toggle="modal" ref={ref} data-target="#exampleModal">
                 Launch demo modal
             </button>
@@ -67,7 +72,7 @@ const Notes = (props) => {
                         </div>
                         <div className="modal-footer">
                             <button ref={refClose} type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button disabled={note.etitle.length<5 || note.edescription.length<5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
+                            <button disabled={note.etitle.length < 5 || note.edescription.length < 5} onClick={handleClick} type="button" className="btn btn-primary">Update Note</button>
                         </div>
                     </div>
                 </div>

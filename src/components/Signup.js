@@ -30,7 +30,8 @@ const Signup = (props) => {
         setCredentials({ ...credentials, [e.target.name]: e.target.value })
     }
     return (
-        <div className="container">
+        <div className="container mt-2">
+            <h2>Create an account to use iNote</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">
                     <label htmlFor="name">Name</label>
@@ -43,11 +44,11 @@ const Signup = (props) => {
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" onChange={onChange} className="form-control" id="password" required minLength={5}/>
+                    <input type="password" name="password" onChange={onChange} className="form-control" id="password" required minLength={5} />
                 </div>
                 <div className="form-group">
                     <label htmlFor="cpassword">Confirm Password</label>
-                    <input type="password" name="cpassword" onChange={onChange} className="form-control" id="cpassword" required minLength={5}/>
+                    <input type="password" name="cpassword" onChange={onChange} className="form-control" id="cpassword" required minLength={5} />
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
