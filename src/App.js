@@ -6,7 +6,6 @@ import {
 } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
-import About from './components/About';
 import NoteState from './context/notes/NoteState';
 import Alert from './components/Alert';
 import Login from './components/Login';
@@ -34,7 +33,6 @@ function App() {
         <div className="container my-3">
           <Switch>
             <Route exact path="/" component={() => <Home showAlert={showAlert} />} />
-            <Route exact path="/about" component={() => <About />} />
             <Route exact path="/login" component={() => <Login showAlert={showAlert} />} />
             <Route exact path="/signup" component={() => <Signup showAlert={showAlert} />} />
           </Switch>

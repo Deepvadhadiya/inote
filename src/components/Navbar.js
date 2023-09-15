@@ -20,9 +20,6 @@ const Navbar = () => {
                     <li className="nav-item">
                         <Link className={`nav-link ${location.pathname === "/" ? "active" : ""}`} to="/">Home</Link>
                     </li>
-                    <li className="nav-item">
-                        <Link className={`nav-link ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>
-                    </li>
                 </ul>
                 {!localStorage.getItem('token')?<form className="form-inline my-2 my-lg-0">
                     <Link className="btn btn-primary mx-1" to="/login" role="button">Login</Link>
